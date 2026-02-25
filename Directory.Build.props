@@ -6,7 +6,7 @@
     <Version>$(Version)</Version>
     <Authors>magmablinker</Authors>
     <Description>A simple performance focused CQRS library.</Description>
-    <PackageLicenseExpression>Apache</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/magmablinker/Strata</RepositoryUrl>
   </PropertyGroup>
 
