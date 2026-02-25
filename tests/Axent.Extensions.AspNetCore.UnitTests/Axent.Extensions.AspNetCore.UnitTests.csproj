@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Axent.Abstractions\Axent.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Axent.Core\Axent.Core.csproj" />
+    <ProjectReference Include="..\..\src\Axent.Extensions.AspNetCore\Axent.Extensions.AspNetCore.csproj" />
+  </ItemGroup>
+</Project>

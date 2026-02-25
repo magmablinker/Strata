@@ -5,19 +5,19 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3DE3CE73-CD6A-484A-95F1-D977EB1628BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strata.Abstractions", "src\Strata.Abstractions\Strata.Abstractions.csproj", "{BC99D3F9-06BB-4686-B7EA-3535BE6F2190}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axent.Abstractions", "src\Axent.Abstractions\Axent.Abstractions.csproj", "{BC99D3F9-06BB-4686-B7EA-3535BE6F2190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strata.Core", "src\Strata.Core\Strata.Core.csproj", "{9E31B568-8371-445B-AD9C-4027E7835ADD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axent.Core", "src\Axent.Core\Axent.Core.csproj", "{9E31B568-8371-445B-AD9C-4027E7835ADD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{E60AF34B-5D79-47A6-92A0-55E7B040F6E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strata.ExampleApi", "samples\Strata.ExampleApi\Strata.ExampleApi.csproj", "{2EAE29D7-8C77-4528-985C-6082258C453C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axent.ExampleApi", "samples\Axent.ExampleApi\Axent.ExampleApi.csproj", "{2EAE29D7-8C77-4528-985C-6082258C453C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strata.Extensions.AspNetCore", "src\Strata.Extensions.AspNetCore\Strata.Extensions.AspNetCore.csproj", "{FEE57F0A-6316-4514-B1E2-8FDF0967EE21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axent.Extensions.AspNetCore", "src\Axent.Extensions.AspNetCore\Axent.Extensions.AspNetCore.csproj", "{FEE57F0A-6316-4514-B1E2-8FDF0967EE21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D4C5F6EB-2F81-47D0-875D-353E24BE2303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strata.Extensions.AspNetCore.UnitTests", "tests\Strata.Extensions.AspNetCore.UnitTests\Strata.Extensions.AspNetCore.UnitTests.csproj", "{763FB29D-C146-4D59-9026-997C5973F242}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axent.Extensions.AspNetCore.UnitTests", "tests\Axent.Extensions.AspNetCore.UnitTests\Axent.Extensions.AspNetCore.UnitTests.csproj", "{763FB29D-C146-4D59-9026-997C5973F242}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF63ABDF-FF8E-4EEE-90C3-E1C7C2F5BF26}"
 	ProjectSection(SolutionItems) = preProject

@@ -7,12 +7,7 @@
     <Authors>magmablinker</Authors>
     <Description>A simple performance focused CQRS library.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/magmablinker/Strata</RepositoryUrl>
+    <RepositoryUrl>https://github.com/magmablinker/Axent</RepositoryUrl>
   </PropertyGroup>
-
-  <ItemGroup Condition="!$(ProjectName.EndsWith(`Tests`))">
-    <InternalsVisibleTo Include="$(AssemblyName).Tests"/>
-    <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
-  </ItemGroup>
 
 </Project>
