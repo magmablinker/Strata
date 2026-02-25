@@ -2,7 +2,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Axent.Abstractions?label=Axent.Abstractions)](https://www.nuget.org/packages/Axent.Abstractions)
 [![NuGet](https://img.shields.io/nuget/v/Axent.Core?label=Axent.Core)](https://www.nuget.org/packages/Axent.Core)
 [![NuGet](https://img.shields.io/nuget/v/Axent.Extensions.AspNetCore?label=Axent.Extensions.AspNetCore)](https://www.nuget.org/packages/Axent.Extensions.AspNetCore)
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![License](https://img.shields.io/badge/license-APACHE-blue)](LICENSE)
 
 **Axent** is a lightweight, high-performance .NET library for implementing CQRS patterns with minimal boilerplate. It provides a simple request/response pipeline and allows adding custom processors for advanced scenarios.
 
