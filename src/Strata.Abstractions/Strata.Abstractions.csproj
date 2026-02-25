@@ -1,0 +1,5 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <PackageId>Strata.Abstractions</PackageId>
+    </PropertyGroup>
+</Project>

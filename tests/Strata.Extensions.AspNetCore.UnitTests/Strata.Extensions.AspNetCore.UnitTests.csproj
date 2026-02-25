@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Strata.Abstractions\Strata.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\Strata.Core\Strata.Core.csproj" />
+    <ProjectReference Include="..\..\src\Strata.Extensions.AspNetCore\Strata.Extensions.AspNetCore.csproj" />
+  </ItemGroup>
+</Project>
