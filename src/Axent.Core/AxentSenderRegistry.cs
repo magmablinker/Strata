@@ -1,4 +1,3 @@
-using Axent.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Axent.Core;
@@ -19,16 +18,14 @@ public static class AxentSenderRegistry
     public static void Register(Action<IServiceCollection> registration)
     {
         if (_registration is not null)
-            throw new InvalidOperationException(
-                "A sender registration has already been registered. " +
-                "Ensure only one assembly references Axent.SourceGenerator.");
+        {
+            throw new AxentConfigurationException("A sender registration has already been registered. Ensure only one assembly references Axent.SourceGenerator.");
+        }
 
         _registration = registration;
     }
 
     internal static void Apply(IServiceCollection services) =>
-        (_registration ?? throw new AxentConfigurationException(
-            "No generated sender registration was found. " +
-            "Ensure the Axent.SourceGenerator package is referenced and the project has been built."))
+            (_registration ?? throw new AxentConfigurationException("No generated sender registration was found. Ensure the Axent.SourceGenerator package is referenced and the project has been built."))
         .Invoke(services);
 }
