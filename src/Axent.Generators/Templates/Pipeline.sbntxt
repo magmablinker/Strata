@@ -13,7 +13,7 @@ internal sealed class {{ type.pipeline_class_name }}
 {
     private readonly IPipelineExecutorService _executor;
     private readonly IRequestContextFactory _contextFactory;
-    private readonly IAxentPipe<{{ type.request_full_name }}, {{ type.response_full_name }}>[] _pipeline;
+    private readonly IReadOnlyList<IAxentPipe<{{ type.request_full_name }}, {{ type.response_full_name }}>> _pipes;
 
     public {{ type.pipeline_class_name }}(
         IPipelineExecutorService executor,
@@ -23,7 +23,7 @@ internal sealed class {{ type.pipeline_class_name }}
     {
         _executor = executor;
         _contextFactory = contextFactory;
-        _pipeline = [..pipes, handlerPipe];
+        _pipes = [..pipes, handlerPipe];
     }
 
     public async Task<Response<{{ type.response_full_name }}>> ExecuteAsync(
@@ -31,7 +31,7 @@ internal sealed class {{ type.pipeline_class_name }}
         CancellationToken cancellationToken)
     {
         var context = _contextFactory.Get(request);
-        return await _executor.ExecuteAsync(_pipeline, context, cancellationToken);
+        return await _executor.ExecuteAsync(_pipes, context, cancellationToken);
     }
 }
 {{ end }}
