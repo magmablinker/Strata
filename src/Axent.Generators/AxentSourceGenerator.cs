@@ -10,11 +10,12 @@ using Scriban.Runtime;
 namespace Axent.Generators;
 
 [Generator]
-public sealed class SenderGenerator : IIncrementalGenerator
+public sealed class AxentSourceGenerator : IIncrementalGenerator
 {
     private const string AxentModuleInitializerFile = "AxentModuleInitializer.g.cs";
     private const string SenderFile = "Sender.g.cs";
     private const string PipelinesFile = "Pipelines.g.cs";
+    private const string HandlerPipeFile = "HandlerPipe.g.cs";
 
     private const string RequestMetadataName = "Axent.Abstractions.IRequest`1";
 
@@ -74,8 +75,7 @@ public sealed class SenderGenerator : IIncrementalGenerator
                     symbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat),
                 ResponseFullName:
                     responseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat),
-                PipelineClassName:
-                    $"{symbol.Name}Pipeline");
+                SymbolName: symbol.Name);
         }
 
         return null;
@@ -103,6 +103,9 @@ public sealed class SenderGenerator : IIncrementalGenerator
         ctx.AddSource(PipelinesFile,
             SourceText.From(BuildPipelinesSource(requests), Encoding.UTF8));
 
+        ctx.AddSource(HandlerPipeFile,
+            SourceText.From(BuildHandlerPipeSource(requests), Encoding.UTF8));
+
         ctx.AddSource(
             AxentModuleInitializerFile,
             SourceText.From(BuildModuleInitializerSource(requests), Encoding.UTF8));
@@ -117,6 +120,12 @@ public sealed class SenderGenerator : IIncrementalGenerator
     private static string BuildPipelinesSource(ImmutableArray<RequestTypeInfo> types)
     {
         var template = GetTemplate("Pipeline");
+        return RenderTemplate(types, template);
+    }
+
+    private static string BuildHandlerPipeSource(ImmutableArray<RequestTypeInfo> types)
+    {
+        var template = GetTemplate("HandlerPipe");
         return RenderTemplate(types, template);
     }
 
@@ -157,7 +166,7 @@ public sealed class SenderGenerator : IIncrementalGenerator
 internal sealed record RequestTypeInfo(
     string RequestFullName,
     string ResponseFullName,
-    string PipelineClassName)
+    string SymbolName)
 {
     public static readonly IEqualityComparer<RequestTypeInfo?> Comparer =
         EqualityComparer<RequestTypeInfo?>.Default;

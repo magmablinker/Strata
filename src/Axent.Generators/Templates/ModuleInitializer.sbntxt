@@ -17,7 +17,8 @@ internal static class SenderModuleInitializer
         {
             services.AddScoped<ISender, Sender>();
            {{ for type in types }}
-            services.AddScoped<{{ type.pipeline_class_name }}>();
+            services.AddScoped<{{ type.symbol_name }}Pipeline>();
+            services.AddScoped<{{ type.symbol_name }}HandlerPipe>();
            {{ end }}
         });
     }

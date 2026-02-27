@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Axent.Abstractions;
 
@@ -23,7 +23,9 @@ internal sealed class HandlerPipe<TRequest, TResponse> : IHandlerPipe<TRequest, 
         {
             var handler = _serviceProvider.GetService<IRequestHandler<TRequest, TResponse>>();
             if (handler is null)
+            {
                 throw new InvalidOperationException($"No handler found for request type {context.Request.GetType()}");
+            }
             return await handler.HandleAsync(context, cancellationToken);
         }
         catch (InvalidOperationException)
