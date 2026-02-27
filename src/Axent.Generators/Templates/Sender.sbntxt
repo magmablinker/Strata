@@ -25,7 +25,7 @@ internal sealed class Sender : ISender
         return request switch
         {
         {{ for type in types }}
-            {{ type.request_full_name }} r => (Task<Response<TResponse>>)(object)_serviceProvider.GetRequiredService<{{ type.pipeline_class_name }}>().ExecuteAsync(r, cancellationToken),
+            {{ type.request_full_name }} r => (Task<Response<TResponse>>)(object)_serviceProvider.GetRequiredService<{{ type.symbol_name }}Pipeline>().ExecuteAsync(r, cancellationToken),
         {{ end }}
             _ => throw new InvalidOperationException(
                         $"No pipeline found for request type '{request.GetType().FullName}'.")

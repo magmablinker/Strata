@@ -2,9 +2,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Axent.Abstractions;
 
-namespace Axent.Core;
+namespace Axent.Generated;
 
-internal sealed class {{ type.symbol_name }}HandlerPipe
+{{ for type in types }}
+internal sealed class {{ type.symbol_name }}HandlerPipe : IAxentPipe<{{ type.request_full_name }}, {{ type.response_full_name }}>
 {
     private readonly IRequestHandler<{{ type.request_full_name }}, {{ type.response_full_name }}> _requestHandler;
     private readonly ILogger<{{ type.symbol_name }}HandlerPipe> _logger;
@@ -28,7 +29,8 @@ internal sealed class {{ type.symbol_name }}HandlerPipe
         catch (Exception e)
         {
             _logger.LogError(e, "An error occured while processing the request");
-            return Response.Failure<TResponse>(ErrorDefaults.Generic.InternalServerError());
+            return Response.Failure<{{ type.response_full_name }}>(ErrorDefaults.Generic.InternalServerError());
         }
     }
 }
+{{ end }}
