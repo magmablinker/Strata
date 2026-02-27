@@ -5,7 +5,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Axent.Abstractions\Axent.Abstractions.csproj" />
-		<ProjectReference Include="..\Axent.SourceGenerator\Axent.SourceGenerator.csproj" ReferenceOutputAssembly="false" PrivateAssets="all" />
+		<ProjectReference Include="..\Axent.Generators\Axent.Generators.csproj" ReferenceOutputAssembly="false" PrivateAssets="all" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -16,7 +16,7 @@
 
 	<Target Name="PackGenerator" BeforeTargets="_GetPackageFiles">
 		<ItemGroup>
-			<None Include="$(MSBuildThisFileDirectory)..\Axent.SourceGenerator\bin\$(Configuration)\netstandard2.0\Axent.SourceGenerator.dll" Pack="true" PackagePath="analyzers/dotnet/cs/Axent.SourceGenerator.dll" Visible="false" />
+			<None Include="$(MSBuildThisFileDirectory)..\Axent.Generators\bin\$(Configuration)\netstandard2.0\Axent.Generators.dll" Pack="true" PackagePath="analyzers/dotnet/cs/Axent.Generators.dll" Visible="false" />
 		</ItemGroup>
 	</Target>
 </Project>

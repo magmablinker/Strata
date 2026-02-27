@@ -37,4 +37,4 @@ app.MapGet("/api/other", async (ISender sender, CancellationToken cancellationTo
     return response.ToResult();
 });
 
-app.Run();
+await app.RunAsync();

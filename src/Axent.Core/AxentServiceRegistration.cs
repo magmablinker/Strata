@@ -20,7 +20,7 @@ public static class AxentServiceRegistration
 
         if (options.UseSourceGeneratedSender)
         {
-            services.AddScoped(AxentSenderRegistry.GetFactory());
+            AxentSenderRegistry.Apply(services);
         }
         else
         {
