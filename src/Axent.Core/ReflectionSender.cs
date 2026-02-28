@@ -1,20 +1,17 @@
-﻿using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using System.Reflection;
 using Axent.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Axent.Core;
 
-internal sealed class Sender : ISender
+internal sealed class ReflectionSender : ISender
 {
-    private readonly ILogger<Sender> _logger;
     private readonly IRequestContextFactory _requestContextFactory;
     private readonly IServiceProvider _serviceProvider;
 
-    public Sender(IServiceProvider serviceProvider, ILogger<Sender> logger, IRequestContextFactory requestContextFactory)
+    public ReflectionSender(IServiceProvider serviceProvider, IRequestContextFactory requestContextFactory)
     {
         _serviceProvider = serviceProvider;
-        _logger = logger;
         _requestContextFactory = requestContextFactory;
     }
 
@@ -28,7 +25,7 @@ internal sealed class Sender : ISender
 
         return await (Task<Response<TResponse>>)method?.Invoke(this, [request, cancellationToken])!;
     }
-    
+
     private async Task<Response<TResponse>> SendInternalAsync<TRequest, TResponse>(TRequest request,
         CancellationToken cancellationToken)
         where TRequest : class, IRequest<TResponse>
@@ -37,7 +34,7 @@ internal sealed class Sender : ISender
         var pipes = _serviceProvider.GetServices<IAxentPipe<TRequest, TResponse>>().ToArray();
         var handlerPipe = _serviceProvider.GetRequiredService<IHandlerPipe<TRequest, TResponse>>();
         var context = _requestContextFactory.Get(request);
-        
-        return await executor.ExecuteAsync([..pipes, handlerPipe], context, cancellationToken); 
+
+        return await executor.ExecuteAsync([.. pipes, handlerPipe], context, cancellationToken);
     }
 }

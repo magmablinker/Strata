@@ -4,7 +4,6 @@ using Axent.ExampleApi;
 using Axent.Extensions.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAxent()
     .AddRequestHandlers(AssemblyProvider.Current)
@@ -37,4 +36,4 @@ app.MapGet("/api/other", async (ISender sender, CancellationToken cancellationTo
     return response.ToResult();
 });
 
-app.Run();
+await app.RunAsync();
