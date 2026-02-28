@@ -1,0 +1,7 @@
+<svg width="256" height="256" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon outline -->
+  <polygon points="60,0 120,35 120,85 60,120 0,85 0,35" fill="none" stroke="#000" stroke-width="6" stroke-linejoin="miter"></polygon>
+
+  <!-- Abstract A shape -->
+  <polygon points="60,24 88,84 76,84 60,52 44,84 32,84" fill="#000"></polygon>
+</svg>
