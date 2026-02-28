@@ -16,10 +16,4 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.3" />
 	</ItemGroup>
-
-<!--	<Target Name="PackGenerator" BeforeTargets="_GetPackageFiles">-->
-<!--		<ItemGroup>-->
-<!--			<None Include="$(MSBuildThisFileDirectory)..\Axent.Generators\bin\$(Configuration)\netstandard2.0\Axent.Generators.dll" Pack="true" PackagePath="analyzers/dotnet/cs/Axent.Generators.dll" Visible="false" />-->
-<!--		</ItemGroup>-->
-<!--	</Target>-->
 </Project>
