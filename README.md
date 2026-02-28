@@ -171,6 +171,37 @@ builder.Services.AddAxent(o => o.UseSourceGeneratedSender = false)
 ```
 > By default, if no options are provided, the source-generated sender is used.
 
+## Benchmark
+
+### Source Generated Dispatch
+```
+BenchmarkDotNet v0.14.0, Windows 11 (10.0.26200.7840)
+11th Gen Intel Core i9-11900K 3.50GHz, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 9.0.203
+  [Host]     : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  DefaultJob : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+```
+
+| Method                            | Mean     | Error    | StdDev   | Median   | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
+|---------------------------------- |---------:|---------:|---------:|---------:|------:|--------:|-------:|----------:|------------:|
+| &#39;SendAsync (cold)&#39;                | 267.4 ns | 20.59 ns | 60.72 ns | 229.1 ns |  1.05 |    0.32 | 0.0753 |     632 B |        1.00 |
+| &#39;SendAsync (warm, same instance)&#39; | 220.6 ns |  4.37 ns |  6.12 ns | 219.7 ns |  0.86 |    0.17 | 0.0725 |     608 B |        0.96 |
+
+### Reflection Dispatch
+```
+BenchmarkDotNet v0.14.0, Windows 11 (10.0.26200.7840)
+11th Gen Intel Core i9-11900K 3.50GHz, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 9.0.203
+  [Host]     : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  DefaultJob : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+```
+
+| Method                            | Mean       | Error    | StdDev    | Median     | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
+|---------------------------------- |-----------:|---------:|----------:|-----------:|------:|--------:|-------:|----------:|------------:|
+| &#39;SendAsync (cold)&#39;                | 1,149.5 ns | 56.12 ns | 165.46 ns | 1,205.2 ns |  1.02 |    0.22 | 0.1249 |   1.02 KB |        1.00 |
+| &#39;SendAsync (warm, same instance)&#39; |   853.3 ns | 16.94 ns |  25.35 ns |   852.8 ns |  0.76 |    0.13 | 0.1221 |      1 KB |        0.98 |
+
+
 ## Contributing
 Contributions are welcome! Please open an issue or pull request for bug fixes, improvements, or new features.
 
