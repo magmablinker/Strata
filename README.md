@@ -1,6 +1,6 @@
 # Axent
 
-![Logo](https://raw.githubusercontent.com/magmablinker/Axent/refs/heads/feature/source-generator/misc/axent-logo.svg)
+![Axent Logo](https://raw.githubusercontent.com/magmablinker/Axent/refs/heads/main/misc/axent-logo.svg)
 
 [![NuGet](https://img.shields.io/nuget/v/Axent.Abstractions?label=Axent.Abstractions)](https://www.nuget.org/packages/Axent.Abstractions)
 [![NuGet](https://img.shields.io/nuget/v/Axent.Core?label=Axent.Core)](https://www.nuget.org/packages/Axent.Core)
