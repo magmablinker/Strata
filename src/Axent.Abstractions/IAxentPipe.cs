@@ -1,4 +1,4 @@
-﻿namespace Axent.Abstractions;
+namespace Axent.Abstractions;
 
 /// <summary>
 /// Marker interface, do not implement it.
@@ -7,7 +7,9 @@ public interface IAxentPipe;
 
 public interface IAxentPipe<TRequest, TResponse> : IAxentPipe
 {
-    ValueTask<Response<TResponse>> ProcessAsync(Func<ValueTask<Response<TResponse>>> next,
+    Task<Response<TResponse>> ProcessAsync(
+        IPipelineChain<TRequest, TResponse> chain,
+        int nextIndex,
         RequestContext<TRequest> context,
         CancellationToken cancellationToken = default);
 }

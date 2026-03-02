@@ -18,7 +18,6 @@
 - Extensible pipelines using `IAxentPipe<TRequest, TResponse>`
 - Optimized for performance and simplicity
 - Works seamlessly with ASP.NET Core
-- Choose between a source generated or reflection based sender implementation
 
 ---
 
@@ -144,54 +143,57 @@ AxentOptions allows you to configure optional settings that modify the behavior 
 public sealed class AxentOptions
 {
     /// <summary>
-    /// Determines whether to use the source-generated sender implementation.
-    /// Defaults to true.
+    /// Determines whether error handling is enabled or exceptions should be "forwarded" to the consumer
+    /// of the library.
+    /// No errors will be caught if the options are not set.
     /// </summary>
-    public bool UseSourceGeneratedSender { get; set; } = true;
+    public AxentErrorHandlingOptions? ErrorHandling { get; set; }
 }
+
+public sealed class AxentErrorHandlingOptions
+{
+    /// <summary>
+    /// Determines whether the full exception gets returned or not, when the `ErrorHandlingPipe` is registered.
+    /// Defaults to false
+    /// </summary>
+    public bool EnableDetailedExceptionResponse { get; set; }
+}
+
 ```
-
-### Using Reflection Based Sender Implementation
-
-You can switch to the reflection-based sender by setting UseSourceGeneratedSender to false:
-
-```csharp
-builder.Services.AddAxent(o => o.UseSourceGeneratedSender = false)
-    .AddRequestHandlers(AssemblyProvider.Current)
-    .AddPipe<OtherRequestPipe>();
-```
-> By default, if no options are provided, the source-generated sender is used.
 
 ## Benchmark
 
 ### Source Generated Dispatch
 ```
+
 BenchmarkDotNet v0.14.0, Windows 11 (10.0.26200.7840)
-11th Gen Intel Core i9-11900K 3.50GHz, 1 CPU, 16 logical and 8 physical cores
-.NET SDK 9.0.203
-  [Host]     : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
-  DefaultJob : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+Unknown processor
+.NET SDK 10.0.200-preview.0.26103.119
+  [Host]     : .NET 8.0.23 (8.0.2325.60607), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI [AttachedDebugger]
+  DefaultJob : .NET 8.0.23 (8.0.2325.60607), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+
+
+```
+| Method                            | Mean     | Error    | StdDev   | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
+|---------------------------------- |---------:|---------:|---------:|------:|--------:|-------:|----------:|------------:|
+| &#39;SendAsync (cold)&#39;                | 38.51 ns | 0.807 ns | 2.168 ns |  1.00 |    0.08 | 0.0176 |     296 B |        1.00 |
+| &#39;SendAsync (warm, same instance)&#39; | 35.83 ns | 0.738 ns | 1.368 ns |  0.93 |    0.06 | 0.0162 |     272 B |        0.92 |
+
+### MediatR (v12.5.0)
 ```
 
-| Method                            | Mean     | Error    | StdDev   | Median   | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
-|---------------------------------- |---------:|---------:|---------:|---------:|------:|--------:|-------:|----------:|------------:|
-| &#39;SendAsync (cold)&#39;                | 267.4 ns | 20.59 ns | 60.72 ns | 229.1 ns |  1.05 |    0.32 | 0.0753 |     632 B |        1.00 |
-| &#39;SendAsync (warm, same instance)&#39; | 220.6 ns |  4.37 ns |  6.12 ns | 219.7 ns |  0.86 |    0.17 | 0.0725 |     608 B |        0.96 |
-
-### Reflection Dispatch
-```
 BenchmarkDotNet v0.14.0, Windows 11 (10.0.26200.7840)
-11th Gen Intel Core i9-11900K 3.50GHz, 1 CPU, 16 logical and 8 physical cores
-.NET SDK 9.0.203
-  [Host]     : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
-  DefaultJob : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+Unknown processor
+.NET SDK 10.0.200-preview.0.26103.119
+  [Host]     : .NET 8.0.23 (8.0.2325.60607), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI [AttachedDebugger]
+  DefaultJob : .NET 8.0.23 (8.0.2325.60607), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+
+
 ```
-
-| Method                            | Mean       | Error    | StdDev    | Median     | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
-|---------------------------------- |-----------:|---------:|----------:|-----------:|------:|--------:|-------:|----------:|------------:|
-| &#39;SendAsync (cold)&#39;                | 1,149.5 ns | 56.12 ns | 165.46 ns | 1,205.2 ns |  1.02 |    0.22 | 0.1249 |   1.02 KB |        1.00 |
-| &#39;SendAsync (warm, same instance)&#39; |   853.3 ns | 16.94 ns |  25.35 ns |   852.8 ns |  0.76 |    0.13 | 0.1221 |      1 KB |        0.98 |
-
+| Method                       | Mean     | Error    | StdDev   | Gen0   | Allocated |
+|----------------------------- |---------:|---------:|---------:|-------:|----------:|
+| &#39;Send (cold)&#39;                | 79.03 ns | 1.526 ns | 2.713 ns | 0.0257 |     432 B |
+| &#39;Send (warm, same instance)&#39; | 79.21 ns | 1.566 ns | 3.783 ns | 0.0243 |     408 B |
 
 ## Contributing
 Contributions are welcome! Please open an issue or pull request for bug fixes, improvements, or new features.

@@ -14,18 +14,15 @@ public static class AxentServiceRegistration
         configure?.Invoke(options);
 
         builder.Services
-            .AddScoped<IRequestContextFactory, RequestContextFactory>()
-            .AddScoped<IPipelineExecutorService, PipelineExecutorService>()
-            .AddScoped(typeof(IHandlerPipe<,>), typeof(HandlerPipe<,>));
+            .AddSingleton(options)
+            .AddScoped<IRequestContextFactory, RequestContextFactory>();
 
-        if (options.UseSourceGeneratedSender)
+        if (options.ErrorHandling is not null)
         {
-            AxentSenderRegistry.Apply(services);
+            builder.AddPipe(typeof(ErrorHandlingPipe<,>));
         }
-        else
-        {
-            services.AddScoped<ISender, ReflectionSender>();
-        }
+
+        AxentSenderRegistry.Apply(services);
 
         return builder;
     }

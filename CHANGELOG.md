@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0]
+
+### Breaking Changes
+- Change return type of "IAxentPipe<TRequest, TResponse>.ProcessAsync" from `ValueTask<Response<TResponse>>` to `Task<Response<TResponse>>`
+- Remove reflection based implementation.
+
+### Features Added
+- Improve performance of the source generated dispatcher
+
+### Bugs Fixed
+- None
+
 ## [1.1.0]
 
 ### Breaking Changes

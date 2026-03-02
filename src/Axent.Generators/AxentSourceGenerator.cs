@@ -50,7 +50,10 @@ public sealed class AxentSourceGenerator : IIncrementalGenerator
         // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
         foreach (var @interface in symbol.AllInterfaces)
         {
-            if (!@interface.IsRequestInterface()) continue;
+            if (!@interface.IsRequestInterface())
+            {
+                continue;
+            }
 
             var responseType = @interface.TypeArguments[0];
 
@@ -73,7 +76,10 @@ public sealed class AxentSourceGenerator : IIncrementalGenerator
                 .OrderBy(t => t.RequestFullName)
                 .ToImmutableArray();
 
-        if (requests.Length == 0) return;
+        if (requests.Length == 0)
+        {
+            return;
+        }
 
         ctx.AddSource(SenderFile,
             SourceText.From(BuildSenderSource(requests, ctx), Encoding.UTF8));
@@ -143,7 +149,10 @@ public sealed class AxentSourceGenerator : IIncrementalGenerator
 
     private static string RenderTemplate(ImmutableArray<RequestTypeInfo> types, Template? template)
     {
-        if (template is null) return string.Empty;
+        if (template is null)
+        {
+            return string.Empty;
+        }
 
         var context = new TemplateContext();
         var scriptObject = new ScriptObject();

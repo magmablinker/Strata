@@ -22,11 +22,11 @@ internal sealed class OtherRequestPipe : IAxentPipe<OtherRequest, OtherResponse>
         _logger = logger;
     }
 
-
-    public ValueTask<Response<OtherResponse>> ProcessAsync(Func<ValueTask<Response<OtherResponse>>> next, RequestContext<OtherRequest> context, CancellationToken cancellationToken = default)
+    public Task<Response<OtherResponse>> ProcessAsync(IPipelineChain<OtherRequest, OtherResponse> chain, int nextIndex, RequestContext<OtherRequest> context,
+        CancellationToken cancellationToken = default)
     {
         _logger.LogInformation("I only run during other request");
-        return next();
+        return chain.NextAsync(context, nextIndex, cancellationToken);
     }
 }
 
