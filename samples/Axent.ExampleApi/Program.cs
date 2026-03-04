@@ -12,7 +12,11 @@ builder.Services.AddAxent()
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Axent Example Api is up and running!");
+app.MapGet("/", async (ISender sender, CancellationToken cancellationToken) =>
+{
+    var response = await sender.SendAsync(new WelcomeRequest(), cancellationToken);
+    return response.ToResult();
+});
 
 app.MapGet("/api/example", async (ISender sender, CancellationToken cancellationToken) =>
 {

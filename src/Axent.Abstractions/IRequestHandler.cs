@@ -1,5 +1,6 @@
-﻿namespace Axent.Abstractions;
+namespace Axent.Abstractions;
 
+// TODO: Remove this interface
 public interface IRequestHandler
 {
     Task<object> HandleAsync(RequestContext<object> context, CancellationToken cancellationToken = default);
