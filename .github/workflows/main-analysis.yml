@@ -36,12 +36,14 @@ jobs:
       - name: Begin SonarCloud analysis
         run: |
           dotnet sonarscanner begin \
-            /k:"${{ secrets.SONAR_PROJECT_KEY }}" \
-            /o:"${{ secrets.SONAR_ORGANIZATION }}" \
-            /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
+            /k:"$SONAR_PROJECT_KEY" \
+            /o:"$SONAR_ORGANIZATION" \
+            /d:sonar.token="$SONAR_TOKEN" \
             /d:sonar.host.url="https://sonarcloud.io"
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+          SONAR_ORGANIZATION: ${{ SONAR_ORGANIZATION }}
 
       - name: Build
         run: dotnet build --no-restore --configuration Release
@@ -50,6 +52,6 @@ jobs:
         run: dotnet test --no-restore --configuration Release --logger "console;verbosity=normal"
 
       - name: End SonarCloud analysis
-        run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+        run: dotnet sonarscanner end /d:sonar.token="$SONAR_TOKEN"
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
