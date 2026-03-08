@@ -25,7 +25,7 @@ internal sealed class ExampleRequestHandler : IRequestHandler<ExampleCommand, Ex
 
     public ValueTask<Response<ExampleResponse>> HandleAsync(RequestContext<ExampleCommand> context, CancellationToken cancellationToken = default)
     {
-        _logger.LogInformation("Message from request '{0}'", context.Request.Message);
+        _logger.LogInformation("Message from request '{Message}'", context.Request.Message);
         return ValueTask.FromResult(Random.Next(1, 100) % 2 == 0
             ? throw new InvalidOperationException()
             : Response.Success(new ExampleResponse { Message = context.Request.Message }));
