@@ -28,7 +28,7 @@ internal sealed class ExampleRequestHandler : IRequestHandler<ExampleRequest, Ex
     {
         _logger.LogInformation("Message from request '{0}'", context.Request.Message);
         return ValueTask.FromResult(Random.Next(1, 100) % 2 == 0
-            ? Response.Failure(ErrorDefaults.Generic.BadRequest())
+            ? throw new InvalidOperationException()
             : Response.Success(new ExampleResponse { Message = context.Request.Message }));
     }
 }
