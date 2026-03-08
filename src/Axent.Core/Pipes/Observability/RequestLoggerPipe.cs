@@ -2,7 +2,7 @@
 using Axent.Abstractions;
 using Microsoft.Extensions.Logging;
 
-namespace Axent.Core.Observability;
+namespace Axent.Core.Pipes.Observability;
 
 internal sealed class RequestLoggerPipe<TRequest, TResponse> : IAxentPipe<TRequest, TResponse>
 {

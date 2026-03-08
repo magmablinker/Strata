@@ -2,7 +2,7 @@ using Axent.Abstractions;
 using Axent.Core.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Axent.Core.Observability;
+namespace Axent.Core.Pipes.Observability;
 
 public sealed class ErrorHandlingPipe<TRequest, TResponse>
     : IAxentPipe<TRequest, TResponse>

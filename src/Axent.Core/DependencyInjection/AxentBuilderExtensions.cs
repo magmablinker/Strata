@@ -1,11 +1,12 @@
 using System.Reflection;
 using Axent.Abstractions;
-using Axent.Core.Observability;
+using Axent.Core.Pipes.Observability;
+using Axent.Core.Pipes.Transactions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Axent.Core.DependencyInjection;
 
-public static class AxentServiceRegistration
+public static class AxentBuilderExtensions
 {
     public static AxentBuilder AddAxent(this IServiceCollection services, Action<AxentOptions>? configure = null)
     {
@@ -17,6 +18,11 @@ public static class AxentServiceRegistration
         builder.Services
             .AddSingleton(options)
             .AddScoped<IRequestContextFactory, RequestContextFactory>();
+
+        if (options.Transactions.UseTransactions)
+        {
+            builder.AddTransactionPipe();
+        }
 
         if (options.ErrorHandling is not null)
         {
@@ -101,5 +107,10 @@ public static class AxentServiceRegistration
     {
         builder.AddPipe(typeof(TracingPipe<,>));
         return builder;
+    }
+
+    private static void AddTransactionPipe(this AxentBuilder builder)
+    {
+        builder.Services.AddScoped(typeof(ITransactionPipe<,>), typeof(TransactionPipe<,>));
     }
 }

@@ -22,7 +22,7 @@ app.MapGet("/", async (ISender sender, CancellationToken cancellationToken) =>
 
 app.MapGet("/api/example", async (ISender sender, CancellationToken cancellationToken) =>
 {
-    var request = new ExampleRequest
+    var request = new ExampleCommand
     {
         Message = "Hello World!"
     };

@@ -1,4 +1,4 @@
-﻿namespace Axent.Core.Observability;
+﻿namespace Axent.Core.Pipes.Observability;
 
 internal static class ActivityTags
 {

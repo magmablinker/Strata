@@ -1,34 +1,23 @@
 namespace Axent.Core.DependencyInjection;
 
+/// <summary>
+/// Root configuration options for the Axent pipeline.
+/// </summary>
 public sealed class AxentOptions
 {
     /// <summary>
-    /// Determines whether error handling is enabled or exceptions should be "forwarded" to the consumer
-    /// of the library.
-    /// No errors will be caught if the options are not set.
+    /// Configures error handling behavior for the pipeline.
+    /// When <see langword="null"/>, exceptions are not caught and propagate directly to the caller.
     /// </summary>
     public AxentErrorHandlingOptions? ErrorHandling { get; set; }
 
     /// <summary>
-    /// Provide logging related configurations
+    /// Configures logging behavior for the pipeline.
     /// </summary>
-    public AxentLoggingOptions Logging { get; set; } = new ();
-}
+    public AxentLoggingOptions Logging { get; set; } = new();
 
-public sealed class AxentErrorHandlingOptions
-{
     /// <summary>
-    /// Determines whether the full exception gets returned or not, when the `ErrorHandlingPipe` is registered.
-    /// Defaults to false.
+    /// Configures transaction behavior for command handlers.
     /// </summary>
-    public bool EnableDetailedExceptionResponse { get; set; }
-}
-
-public sealed class AxentLoggingOptions
-{
-    /// <summary>
-    /// Determines whether the full request gets logged via ILogger.
-    /// Defaults to false.
-    /// </summary>
-    public bool EnableRequestLogging { get; set; }
+    public AxentTransactionOptions Transactions { get; set; } = new();
 }

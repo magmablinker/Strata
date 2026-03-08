@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Axent.Abstractions;
 
-namespace Axent.Core.Observability;
+namespace Axent.Core.Pipes.Observability;
 
 internal sealed class TracingPipe<TRequest, TResponse> : IAxentPipe<TRequest, TResponse>
 {

@@ -1,9 +1,8 @@
 ﻿using Axent.Abstractions;
-using Axent.Core;
 
 namespace Axent.ExampleApi;
 
-internal sealed class ExampleRequest : IRequest<ExampleResponse>
+internal sealed class ExampleCommand : ICommand<ExampleResponse>
 {
     public required string Message { get; init; }
 }
@@ -13,7 +12,7 @@ internal sealed class ExampleResponse
     public required string Message { get; init; }
 }
 
-internal sealed class ExampleRequestHandler : IRequestHandler<ExampleRequest, ExampleResponse>
+internal sealed class ExampleRequestHandler : IRequestHandler<ExampleCommand, ExampleResponse>
 {
     private static readonly Random Random = new ();
 
@@ -24,7 +23,7 @@ internal sealed class ExampleRequestHandler : IRequestHandler<ExampleRequest, Ex
         _logger = logger;
     }
 
-    public ValueTask<Response<ExampleResponse>> HandleAsync(RequestContext<ExampleRequest> context, CancellationToken cancellationToken = default)
+    public ValueTask<Response<ExampleResponse>> HandleAsync(RequestContext<ExampleCommand> context, CancellationToken cancellationToken = default)
     {
         _logger.LogInformation("Message from request '{0}'", context.Request.Message);
         return ValueTask.FromResult(Random.Next(1, 100) % 2 == 0

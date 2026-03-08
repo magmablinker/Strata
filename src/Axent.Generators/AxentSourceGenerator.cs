@@ -57,12 +57,13 @@ public sealed class AxentSourceGenerator : IIncrementalGenerator
 
             var responseType = @interface.TypeArguments[0];
 
+            var isCommand = @interface.OriginalDefinition.ToDisplayString() == "Axent.Abstractions.ICommand<TResponse>"
+                            || symbol.AllInterfaces.Any(i => i.OriginalDefinition.ToDisplayString() == "Axent.Abstractions.ICommand<TResponse>");
             return new (
-                RequestFullName:
-                symbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat),
-                ResponseFullName:
-                responseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat),
-                SymbolName: symbol.Name);
+                RequestFullName: symbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat),
+                ResponseFullName: responseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat),
+                SymbolName: symbol.Name,
+                IsCommand: isCommand);
         }
 
         return null;

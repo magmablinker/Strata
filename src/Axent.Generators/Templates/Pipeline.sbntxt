@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Axent.Abstractions;
+using Axent.Core.Pipes.Transactions;
 
 namespace Axent.Generated;
 
@@ -18,11 +19,23 @@ internal sealed class {{ type.symbol_name }}Pipeline
     public {{ type.symbol_name }}Pipeline(
         IRequestContextFactory contextFactory,
         IEnumerable<IAxentPipe<{{ type.request_full_name }}, {{ type.response_full_name }}>> pipes,
-        {{ type.symbol_name }}HandlerPipe handlerPipe)
+        {{ type.symbol_name }}HandlerPipe handlerPipe
+        {{~ if type.is_command ~}}
+        , ITransactionPipe<{{ type.request_full_name }}, {{ type.response_full_name }}>? transactionPipe = null
+        {{~ end ~}}
+    )
     {
         _contextFactory = contextFactory;
 
-        var pipeline = new List<IAxentPipe<{{ type.request_full_name }}, {{ type.response_full_name }}>>(pipes);
+        var pipeline = new List<IAxentPipe<{{ type.request_full_name }}, {{ type.response_full_name }}>>();
+        {{~ if type.is_command ~}}
+        if(transactionPipe is not null)
+        {
+            pipeline.Add(transactionPipe);
+        }
+        {{~ end ~}}
+
+        pipeline.AddRange(pipes);
         pipeline.Add(handlerPipe);
 
         _compiled = BuildPipeline(pipeline);
