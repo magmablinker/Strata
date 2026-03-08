@@ -6,14 +6,10 @@
       <Nullable>enable</Nullable>
       <IsPackable>false</IsPackable>
     </PropertyGroup>
-  
+
     <ItemGroup>
       <PackageReference Include="Axent.Core" Version="*" />
       <PackageReference Include="Axent.Extensions.AspNetCore" Version="*" />
     </ItemGroup>
-  
-    <ItemGroup>
-      <Content Include=".template.config\template.json" />
-    </ItemGroup>
-  
+
 </Project>

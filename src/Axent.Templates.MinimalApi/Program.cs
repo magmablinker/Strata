@@ -11,6 +11,8 @@ builder.Services.AddAxent(o => builder.Configuration.Bind("Axent", o))
 
 var app = builder.Build();
 
+app.MapGet("/", () => "API is up and running");
+
 app.MapGet("/api/weather-forecast", async (ISender sender, CancellationToken cancellationToken) =>
 {
     var response = await sender.SendAsync(new WeatherForecastQuery(), cancellationToken);
