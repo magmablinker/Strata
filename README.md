@@ -2,10 +2,7 @@
 
 ![Axent Logo](https://raw.githubusercontent.com/magmablinker/Axent/refs/heads/main/misc/axent-logo.svg)
 
-[![NuGet](https://img.shields.io/nuget/v/Axent.Abstractions?label=Axent.Abstractions)](https://www.nuget.org/packages/Axent.Abstractions)
-[![NuGet](https://img.shields.io/nuget/v/Axent.Core?label=Axent.Core)](https://www.nuget.org/packages/Axent.Core)
-[![NuGet](https://img.shields.io/nuget/v/Axent.Extensions.AspNetCore?label=Axent.Extensions.AspNetCore)](https://www.nuget.org/packages/Axent.Extensions.AspNetCore)
-[![NuGet](https://img.shields.io/nuget/v/Axent.Extensions.FluentValidation?label=Axent.Extensions.FluentValidation)](https://www.nuget.org/packages/Axent.Extensions.FluentValidation)
+[![NuGet]](https://www.nuget.org/packages/Axent.Core)
 [![Downloads](https://img.shields.io/nuget/dt/Axent.Core.svg)](https://www.nuget.org/packages/Axent.Core/)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/magmablinker/Axent/pr.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=magmablinker_Axent&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=magmablinker_Axent)
