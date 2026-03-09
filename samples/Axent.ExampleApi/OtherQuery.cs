@@ -19,11 +19,11 @@ internal sealed class OtherResponse
     public required string Message { get; init; }
 }
 
-internal sealed class OtherRequestPipe : IAxentPipe<OtherQuery, OtherResponse>
+internal sealed class OtherQueryPipe : IAxentPipe<OtherQuery, OtherResponse>
 {
-    private readonly ILogger<OtherRequestPipe> _logger;
+    private readonly ILogger<OtherQueryPipe> _logger;
 
-    public OtherRequestPipe(ILogger<OtherRequestPipe> logger)
+    public OtherQueryPipe(ILogger<OtherQueryPipe> logger)
     {
         _logger = logger;
     }
@@ -35,18 +35,18 @@ internal sealed class OtherRequestPipe : IAxentPipe<OtherQuery, OtherResponse>
     }
 }
 
-internal sealed class OtherRequestHandler : IRequestHandler<OtherQuery, OtherResponse>
+internal sealed class OtherQueryHandler : IRequestHandler<OtherQuery, OtherResponse>
 {
-    private readonly ILogger<OtherRequestHandler> _logger;
+    private readonly ILogger<OtherQueryHandler> _logger;
 
-    public OtherRequestHandler(ILogger<OtherRequestHandler> logger)
+    public OtherQueryHandler(ILogger<OtherQueryHandler> logger)
     {
         _logger = logger;
     }
 
     public ValueTask<Response<OtherResponse>> HandleAsync(RequestContext<OtherQuery> context, CancellationToken cancellationToken = default)
     {
-        _logger.LogInformation("Message from request '{0}'", context.Request.Message);
+        _logger.LogInformation("Message from request '{Message}'", context.Request.Message);
         return ValueTask.FromResult(Response.Success(new OtherResponse { Message = context.Request.Message }));
     }
 }

@@ -109,7 +109,7 @@ public static class AxentBuilderExtensions
         builder.Services.AddScoped(typeof(ITransactionPipe<,>), typeof(TransactionPipe<,>));
     }
 
-    private static IAxentBuilder AddSourceGeneratedServices(
+    private static AxentBuilder AddSourceGeneratedServices(
         this AxentBuilder builder,
         Assembly[] assemblies)
     {

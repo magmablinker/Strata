@@ -15,7 +15,7 @@ builder.Services.AddAxent(o => builder.Configuration.Bind("AppSettings:Axent", o
     .AddTracing()
     .AddAutoFluentValidation()
     .AddCache()
-    .AddPipe<OtherRequestPipe>()
+    .AddPipe<OtherQueryPipe>()
     .AddPipe(typeof(ExampleRequestPipe<,>));
 
 var app = builder.Build();
