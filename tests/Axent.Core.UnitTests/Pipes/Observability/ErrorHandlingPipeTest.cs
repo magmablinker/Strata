@@ -17,12 +17,12 @@ public sealed class ErrorHandlingPipeTest : TestBase
     public async Task SendAsync_should_catch_exception_and_return_internal_server_error()
     {
         // Arrange
-        var command = new ExceptionQuery(true);
+        var query = new ExceptionQuery(true);
         await using var scope = ServiceProvider.CreateAsyncScope();
         var sender = scope.ServiceProvider.GetRequiredService<ISender>();
 
         // Act
-        var response = await sender.SendAsync(command);
+        var response = await sender.SendAsync(query);
 
         // Assert
         var invalidOperationException = new InvalidOperationException();

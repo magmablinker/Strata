@@ -64,6 +64,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axent.Tests.Shared", "tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axent.Core.UnitTests", "tests\Axent.Core.UnitTests\Axent.Core.UnitTests.csproj", "{13BC8E2A-5C37-4D02-875B-255211EC06CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axent.Extensions.FluentValidation.UnitTests", "tests\Axent.Extensions.FluentValidation.UnitTests\Axent.Extensions.FluentValidation.UnitTests.csproj", "{7AC9DF79-6E4C-4DC9-AC7C-ADA35345DC01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -122,6 +124,10 @@ Global
 		{13BC8E2A-5C37-4D02-875B-255211EC06CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13BC8E2A-5C37-4D02-875B-255211EC06CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13BC8E2A-5C37-4D02-875B-255211EC06CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC9DF79-6E4C-4DC9-AC7C-ADA35345DC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC9DF79-6E4C-4DC9-AC7C-ADA35345DC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC9DF79-6E4C-4DC9-AC7C-ADA35345DC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC9DF79-6E4C-4DC9-AC7C-ADA35345DC01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +149,7 @@ Global
 		{19A88432-3EEA-478F-A728-009F5DD39174} = {3DE3CE73-CD6A-484A-95F1-D977EB1628BF}
 		{6E02A19C-0311-4714-9DE9-A67D043D2005} = {D4C5F6EB-2F81-47D0-875D-353E24BE2303}
 		{13BC8E2A-5C37-4D02-875B-255211EC06CC} = {D4C5F6EB-2F81-47D0-875D-353E24BE2303}
+		{7AC9DF79-6E4C-4DC9-AC7C-ADA35345DC01} = {D4C5F6EB-2F81-47D0-875D-353E24BE2303}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {22A40C2C-CE32-478C-BCAD-E82586AFFE5A}
