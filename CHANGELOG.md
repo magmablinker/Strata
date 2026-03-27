@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.3]
+
+### Bugs Fixed
+- Only complete transaction if request has been completed successfully
+
 ## [1.2.2]
 
 ### Breaking Changes
